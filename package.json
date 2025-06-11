@@ -10,7 +10,7 @@
     "export": "next build && next export",
     "deploy": "NODE_ENV=production next build && touch out/.nojekyll && gh-pages -d out"
   },
-  "homepage": "https://seanparker2.github.io/Than",
+  "homepage": "https://seanparker2.github.io/ThanLab",
   "dependencies": {
     "@types/nodemailer": "^6.4.17",
     "autoprefixer": "^10.4.2",
