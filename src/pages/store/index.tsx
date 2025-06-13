@@ -462,7 +462,7 @@ export default function Store() {
                   
                   <div className="flex flex-col sm:flex-row gap-4">
                     <a 
-                      href="tel:400-888-8888" 
+                      href="tel:+86 180 9898 6553" 
                       className="flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1"
                     >
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

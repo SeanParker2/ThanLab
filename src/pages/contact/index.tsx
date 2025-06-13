@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 export default function Contact() {
   const router = useRouter();
@@ -13,11 +13,6 @@ export default function Contact() {
     subject: '产品咨询',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    success?: boolean;
-    message?: string;
-  }>({});
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
@@ -30,51 +25,6 @@ export default function Contact() {
       ...prev,
       [name]: value
     }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus({});
-    
-    try {
-      const response = await fetch(`${basePath}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        setSubmitStatus({
-          success: true,
-          message: data.message || '您的留言已成功提交，我们会尽快回复您。'
-        });
-        // 重置表单
-        setFormData({
-          name: '',
-          email: '',
-          subject: '产品咨询',
-          message: ''
-        });
-      } else {
-        setSubmitStatus({
-          success: false,
-          message: data.message || '提交失败，请稍后再试。'
-        });
-      }
-    } catch (error) {
-      console.error('提交表单时出错:', error);
-      setSubmitStatus({
-        success: false,
-        message: '网络错误，请检查您的网络连接。'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   return (
@@ -111,7 +61,7 @@ export default function Contact() {
               </div>
               <h3 className="text-xl font-semibold mb-4">电话咨询</h3>
               <p className="text-gray-600 mb-4">周一至周五 9:00-18:00</p>
-              <a href="tel:+81-3-1234-5678" className="text-blue-600 font-medium hover:text-blue-800 transition-colors">+81-3-1234-5678</a>
+              <a href="tel:+81-3-1234-5678" className="text-blue-600 font-medium hover:text-blue-800 transition-colors">+86 180 9898 6553</a>
             </div>
             
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
@@ -122,7 +72,7 @@ export default function Contact() {
               </div>
               <h3 className="text-xl font-semibold mb-4">电子邮件</h3>
               <p className="text-gray-600 mb-4">24小时内回复</p>
-              <a href="mailto:info@thanstudio.com" className="text-indigo-600 font-medium hover:text-indigo-800 transition-colors">info@thanstudio.com</a>
+              <a href="mailto:info@thanstudio.com" className="text-indigo-600 font-medium hover:text-indigo-800 transition-colors">unsaturated2025@gmail.com</a>
             </div>
             
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
@@ -134,7 +84,7 @@ export default function Contact() {
               </div>
               <h3 className="text-xl font-semibold mb-4">工作室地址</h3>
               <p className="text-gray-600 mb-4">欢迎预约参观</p>
-              <p className="text-purple-600 font-medium">东京都涩谷区神宫前6-10-9</p>
+              <p className="text-purple-600 font-medium">深圳市·宝安区</p>
             </div>
           </div>
         </div>
@@ -160,17 +110,7 @@ export default function Contact() {
               {/* 表单 */}
               <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
                 <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                  {submitStatus.message && (
-                    <div className={`mb-6 p-4 rounded-xl text-sm font-medium ${
-                      submitStatus.success
-                        ? 'bg-green-50 text-green-700 border border-green-200' 
-                        : 'bg-red-50 text-red-700 border border-red-200'
-                    }`}>
-                      {submitStatus.message}
-                    </div>
-                  )}
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-3">
@@ -240,29 +180,14 @@ export default function Contact() {
                     </div>
                     
                     <div className="pt-4">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className={`w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold transition-all duration-300 transform ${
-                          isSubmitting 
-                            ? 'opacity-50 cursor-not-allowed' 
-                            : 'hover:shadow-lg hover:-translate-y-1 hover:from-blue-700 hover:to-purple-700'
-                        }`}
+                      <a
+                        href={`mailto:unsaturated2025@gmail.com?subject=${encodeURIComponent(`${formData.subject} - 来自${formData.name}`)}&body=${encodeURIComponent(`姓名: ${formData.name}\n邮箱: ${formData.email}\n\n${formData.message}\n\n此邮件由Than Studio网站发送`)}`}
+                        className={`block w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold transition-all duration-300 transform text-center hover:shadow-lg hover:-translate-y-1 hover:from-blue-700 hover:to-purple-700`}
                       >
-                        {isSubmitting ? (
-                          <div className="flex items-center justify-center">
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            发送中...
-                          </div>
-                        ) : (
-                          '发送消息'
-                        )}
-                      </button>
+                        使用邮箱发送消息
+                      </a>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
               
@@ -334,12 +259,11 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* 地图 - 使用 aspect-ratio 确保地图等比例显示 */}
+      {/* 地图 */}
       <section className="py-10 sm:py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 md:mb-10">位置</h2>
           <div className="w-full aspect-[4/3] sm:aspect-[16/9] bg-gray-200 rounded-lg overflow-hidden shadow-sm">
-            {/* 这里可以嵌入实际的地图 */}
             <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm md:text-base">
               <span>地图将显示在这里</span>
             </div>
@@ -347,7 +271,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* 常见问题 - 调整为卡片式自适应布局 */}
+      {/* 常见问题 */}
       <section className="py-10 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 md:mb-10">常见问题</h2>

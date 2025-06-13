@@ -94,50 +94,61 @@ const Layout: React.FC<LayoutProps> = ({ children, pageLoading = false }) => {
         {children}
       </main>
       
-      <footer className="bg-black text-white py-12 sm:py-16 md:py-24">
-        <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          <div>
-            <h3 className="text-lg font-medium mb-4">联系我们</h3>
-            <p className="mb-2">东京都渋谷区代代木2-7-7</p>
-            <p className="mb-2">contact@nippondesign.com</p>
-            <p>+81 3-1234-5678</p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium mb-4">关注我们</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-primary transition-colors">Instagram</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Twitter</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">LinkedIn</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium mb-4">工作机会</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-primary transition-colors">设计师</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">项目经理</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">实习生</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-medium mb-4">订阅简报</h3>
-            <div className="flex flex-col space-y-2">
-              <input 
-                type="email" 
-                placeholder="请输入邮箱地址" 
-                className="px-4 py-2 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <button className="px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors">
-                订阅
-              </button>
+      <footer className="bg-gray-900 text-white">
+        <div className="container mx-auto px-4 py-12">
+          {/* 主要内容区域 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {/* 联系信息 */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">联系我们</h3>
+              <div className="space-y-2 text-gray-300">
+                <p>深圳市·宝安区</p>
+                <p>unsaturated2025@gmail.com</p>
+                <p>+86 180 9898 6553</p>
+              </div>
+            </div>
+            
+            {/* 社交媒体 */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">关注我们</h3>
+              <div className="space-y-2">
+                <a href="https://www.xiaohongshu.com/user/profile/629e137b0000000021026e64?xsec_token=YB1EnAzViaXpCVcu24U7fqyOXU0rtmIJfiKNRCGQV9A3E=&xsec_source=app_share&xhsshare=CopyLink&appuid=629e137b0000000021026e64&apptime=1749779112&share_id=2f8fa3a9ebee403d927a640c278f8b35" 
+                   className="block text-gray-300 hover:text-white transition-colors">
+                  RedBook
+                </a>
+                <a href="https://x.com/ThanStudio2025" 
+                   className="block text-gray-300 hover:text-white transition-colors">
+                  Twitter
+                </a>
+              </div>
+            </div>
+            
+            {/* 快速导航 */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">快速导航</h3>
+              <div className="space-y-2">
+                <Link href="/work" className="block text-gray-300 hover:text-white transition-colors">
+                  作品集
+                </Link>
+                <Link href="/story" className="block text-gray-300 hover:text-white transition-colors">
+                  故事
+                </Link>
+                <Link href="/contact" className="block text-gray-300 hover:text-white transition-colors">
+                  联系
+                </Link>
+                <Link href="/store" className="block text-gray-300 hover:text-white transition-colors">
+                  商店
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div className="container mx-auto px-4 mt-16 pt-8 border-t border-gray-800">
-          <p className="text-center text-gray-400">© 2024 Nippon Design Center. All rights reserved.</p>
+            
+          {/* 底部版权信息 */}
+          <div className="border-t border-gray-700 pt-6 text-center">
+            <p className="text-gray-400 text-sm">
+              © 2025 Than Studio. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

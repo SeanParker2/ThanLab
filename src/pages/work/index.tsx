@@ -193,7 +193,7 @@ export default function Work() {
                 {filteredWorks.map((work, index) => (
                   <Link 
                     key={index} 
-                    href={`/work/${work.title.replace(/\s+/g, '-').toLowerCase()}`}
+                    href={`/work/${work.id}`}
                     className={`group block transform transition-all duration-700 hover:-translate-y-2 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                     style={{
                       animationDelay: `${index * 150}ms`

@@ -120,10 +120,10 @@ export default function Story() {
                 
                 <div className="space-y-6">
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Than Studio 成立于2015年，是一家位于东京的设计工作室。我们专注于品牌形象、空间设计、产品设计和视觉设计等领域，为客户提供全方位的设计解决方案。
+                    Than Studio 最早成立于2015年，是一家位于深圳的设计工作室。我们专注于品牌形象、空间设计、产品设计和视觉设计等领域，为客户提供全方位的设计解决方案。
                   </p>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    我们的设计理念源于对日本传统美学的理解和现代设计语言的融合，追求简约而不简单的设计表达，注重细节和用户体验。
+                    我们的设计理念源于对中华传统美学的理解和现代设计语言的融合，追求简约而不简单的设计表达，注重细节和用户体验。
                   </p>
                   <p className="text-lg text-gray-700 leading-relaxed">
                     Than Studio 团队由来自不同文化背景的设计师组成，这使我们能够从多元视角思考问题，为客户创造独特而有价值的设计作品。
@@ -192,7 +192,7 @@ export default function Story() {
                   
                   <div className="grid grid-cols-5 gap-8">
                     {[
-                      { year: '2018', title: '工作室成立', desc: '在东京成立Than Studio，开启设计之旅', color: 'from-blue-500 to-indigo-500' },
+                      { year: '2015', title: '工作室成立', desc: '在深圳成立Than Studio，开启设计之旅', color: 'from-blue-500 to-indigo-500' },
                       { year: '2019', title: '团队扩张', desc: '团队成员增至10人，业务快速发展', color: 'from-indigo-500 to-purple-500' },
                       { year: '2020', title: '业务拓展', desc: '开始国际项目合作，服务全球客户', color: 'from-purple-500 to-pink-500' },
                       { year: '2021', title: '获得认可', desc: '荣获多项设计大奖，行业地位确立', color: 'from-pink-500 to-red-500' },

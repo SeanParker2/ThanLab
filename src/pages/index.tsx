@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -17,7 +18,7 @@ export default function Home() {
   }, []);
   
   return (
-    <div>
+    <>
       {/* Hero Banner - 增强视觉效果和动画 */}
       <section className="relative w-full h-screen overflow-hidden">
         {/* 背景几何装饰 */}
@@ -106,7 +107,7 @@ export default function Home() {
               </div>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mt-8 max-w-4xl mx-auto leading-relaxed">
                 Than Studio 是一家位于
-                <span className="text-blue-600 font-medium">东京</span>
+                <span className="text-blue-600 font-medium">深圳</span>
                 的设计工作室
                 <br className="hidden sm:block" />
                 专注于品牌形象、空间设计和视觉创意
@@ -202,7 +203,7 @@ export default function Home() {
               { id: 5, title: '企业形象设计', category: '品牌设计', color: 'from-indigo-500 to-blue-500' },
               { id: 6, title: '艺术装置设计', category: '艺术创作', color: 'from-pink-500 to-rose-500' }
             ].map((work, index) => (
-              <div key={work.id} className="group relative">
+              <Link key={work.id} href={`/work/${work.id}`} className="group relative block">
                 <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                   {/* 作品图片 */}
                   <div className="relative aspect-[4/3] overflow-hidden">
@@ -236,15 +237,15 @@ export default function Home() {
                         <h4 className="font-semibold text-gray-800">{work.title}</h4>
                         <p className="text-sm text-gray-500">{work.category}</p>
                       </div>
-                      <Link href={`/work/${work.id}`} className="text-blue-600 hover:text-blue-800 transition-colors">
+                      <div className="text-blue-600 hover:text-blue-800 transition-colors">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
-                      </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           
@@ -327,37 +328,41 @@ export default function Home() {
                   <div className={`ml-20 md:ml-0 md:w-5/12 ${news.position === 'right' ? 'md:mr-auto md:ml-8' : 'md:ml-auto md:mr-8'}`}>
                     <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
                       {/* 图片区域 */}
-                      <div className="relative h-48 overflow-hidden">
-                        <div 
-                          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                          style={{
-                            backgroundImage: `url(${basePath}/images/news_${news.id}.png)`,
-                          }}
-                        ></div>
-                        <div className={`absolute inset-0 bg-gradient-to-t ${news.color} opacity-0 group-hover:opacity-60 transition-opacity duration-500`}></div>
-                        
-                        {/* 分类标签 */}
-                        <div className="absolute top-4 left-4">
-                          <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-sm font-medium text-gray-800 rounded-full">
-                            {news.category}
-                          </span>
+                      <Link href={`/news/${news.id}`} className="block">
+                        <div className="relative h-48 overflow-hidden">
+                          <div 
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                            style={{
+                              backgroundImage: `url(${basePath}/images/news_${news.id}.png)`,
+                            }}
+                          ></div>
+                          <div className={`absolute inset-0 bg-gradient-to-t ${news.color} opacity-0 group-hover:opacity-60 transition-opacity duration-500`}></div>
+                          
+                          {/* 分类标签 */}
+                          <div className="absolute top-4 left-4">
+                            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-sm font-medium text-gray-800 rounded-full">
+                              {news.category}
+                            </span>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                       
                       {/* 内容区域 */}
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-sm text-gray-500">{news.date}</span>
-                          <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                          <Link href={`/news/${news.id}`} className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors">
                             <svg className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
-                          </div>
+                          </Link>
                         </div>
                         
-                        <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
-                          {news.title}
-                        </h3>
+                        <Link href={`/news/${news.id}`} className="block">
+                          <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+                            {news.title}
+                          </h3>
+                        </Link>
                         
                         <p className="text-gray-600 leading-relaxed">
                           {news.description}
@@ -365,12 +370,12 @@ export default function Home() {
                         
                         {/* 阅读更多 */}
                         <div className="mt-4 pt-4 border-t border-gray-100">
-                          <button className="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
+                          <Link href={`/news/${news.id}`} className="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
                             <span>阅读更多</span>
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -535,6 +540,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
