@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -19,6 +20,40 @@ export default function Home() {
   
   return (
     <>
+      <Head>
+        <title>Than Studio - 专业设计工作室 | 品牌设计·UI/UX设计·产品设计</title>
+        <meta name="description" content="Than Studio是一家专业的设计工作室，专注于品牌形象设计、UI/UX设计、产品设计等领域。我们致力于为客户提供创新、专业的设计解决方案，追求永恒的设计价值。" />
+        <meta name="keywords" content="Than Studio,设计工作室,品牌设计,UI设计,UX设计,产品设计,视觉设计,深圳设计公司,创意设计" />
+        <meta property="og:title" content="Than Studio - 专业设计工作室" />
+        <meta property="og:description" content="专注于品牌形象设计、UI/UX设计、产品设计的专业工作室，追求永恒的设计价值。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://thanstudio.com" />
+        <meta property="og:image" content="https://thanstudio.com/images/home_hero_banner.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Than Studio - 专业设计工作室" />
+        <meta name="twitter:description" content="专注于品牌形象设计、UI/UX设计、产品设计的专业工作室，追求永恒的设计价值。" />
+        <meta name="twitter:image" content="https://thanstudio.com/images/home_hero_banner.png" />
+        <link rel="canonical" href="https://thanstudio.com" />
+        
+        {/* 结构化数据 - 网站首页 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Than Studio",
+              "description": "专业设计工作室，提供品牌设计、UI/UX设计、产品设计等服务",
+              "url": "https://thanstudio.com",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://thanstudio.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+      </Head>
       {/* Hero Banner - 增强视觉效果和动画 */}
       <section className="relative w-full h-screen overflow-hidden">
         {/* 背景几何装饰 */}
@@ -30,7 +65,7 @@ export default function Home() {
         
         {/* 主背景图片 */}
         <div 
-          className="absolute left-0 top-0 w-full h-full bg-black bg-opacity-40"
+          className="absolute left-0 top-0 w-full h-full bg-black bg-opacity-40 transition-transform duration-700 hover:scale-105"
           style={{
             background: `linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url(${basePath}/images/home_hero_banner.png)`,
             backgroundSize: 'cover',
@@ -39,10 +74,13 @@ export default function Home() {
           }}
         ></div>
         
+        {/* 预加载关键图片 */}
+        <link rel="preload" as="image" href={`${basePath}/images/home_hero_banner.png`} />
+        
         {/* 内容区域 */}
         <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center text-white px-4">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-center leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-center leading-tight drop-shadow-lg">
               <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
                 追求永恒的
               </span>
@@ -50,13 +88,13 @@ export default function Home() {
                 设计价值
               </span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl max-w-3xl text-center mb-8 px-4 leading-relaxed text-gray-200">
+            <p className="text-lg sm:text-xl md:text-2xl max-w-3xl text-center mb-8 px-4 leading-relaxed text-gray-200 drop-shadow-md">
               我们致力于创造具有持久价值的设计作品
               <br className="hidden sm:block" />
               <span className="text-blue-200">融合东方美学与现代设计理念</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-              <div className="group px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-gray-100 transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              <div className="group px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-gray-100 hover:scale-105 transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                 <Link href="/work" className="flex items-center justify-center gap-2">
                   探索作品
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -197,11 +235,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {[
               { id: 1, title: '品牌视觉系统', category: '品牌设计', color: 'from-blue-500 to-cyan-500' },
-              { id: 2, title: '现代空间美学', category: '空间设计', color: 'from-purple-500 to-pink-500' },
-              { id: 3, title: '产品包装设计', category: '包装设计', color: 'from-orange-500 to-red-500' },
-              { id: 4, title: '数字界面设计', category: 'UI/UX', color: 'from-green-500 to-teal-500' },
+              { id: 2, title: '产品包装设计', category: '包装设计', color: 'from-orange-500 to-red-500' },
+              { id: 3, title: '数字界面设计', category: 'UI/UX', color: 'from-green-500 to-teal-500' },
+              { id: 4, title: '艺术装置设计', category: '艺术创作', color: 'from-pink-500 to-rose-500' },
               { id: 5, title: '企业形象设计', category: '品牌设计', color: 'from-indigo-500 to-blue-500' },
-              { id: 6, title: '艺术装置设计', category: '艺术创作', color: 'from-pink-500 to-rose-500' }
+              { id: 6, title: '现代空间美学', category: '空间设计', color: 'from-purple-500 to-pink-500' }
             ].map((work, index) => (
               <Link key={work.id} href={`/work/${work.id}`} className="group relative block">
                 <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
@@ -425,7 +463,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {[
               { 
-                name: '田中太郎', 
+                name: '王巧刚', 
                 role: '创意总监', 
                 image: 'home_teammate_1.png',
                 description: '拥有15年设计经验，专注于品牌视觉系统设计',
@@ -433,7 +471,7 @@ export default function Home() {
                 social: { twitter: '#', linkedin: '#', behance: '#' }
               },
               { 
-                name: '佐藤花子', 
+                name: 'A', 
                 role: '设计师', 
                 image: 'home_teammate_2.png',
                 description: '擅长用户体验设计，致力于创造直观的交互体验',
@@ -441,18 +479,18 @@ export default function Home() {
                 social: { twitter: '#', linkedin: '#', behance: '#' }
               },
               { 
-                name: '山田次郎', 
+                name: 'B', 
                 role: '项目经理', 
                 image: 'home_teammate_3.png',
-                description: '项目管理专家，确保每个项目的高质量交付',
+                description: '项目管理专家，确保每个项目的高质量完美交付',
                 color: 'from-green-500 to-teal-500',
                 social: { twitter: '#', linkedin: '#', behance: '#' }
               },
               { 
-                name: '鈴木美咲', 
+                name: 'C', 
                 role: '视觉设计师', 
                 image: 'home_teammate_4.png',
-                description: '视觉传达专家，擅长将创意转化为视觉语言',
+                description: '视觉传达专家，擅长将创意理念转化为视觉语言',
                 color: 'from-orange-500 to-red-500',
                 social: { twitter: '#', linkedin: '#', behance: '#' }
               }

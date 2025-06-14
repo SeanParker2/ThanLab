@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 
 export default function Contact() {
   const router = useRouter();
@@ -28,7 +29,20 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <Head>
+        <title>联系我们 - Than Studio | 专业设计工作室</title>
+        <meta name="description" content="联系Than Studio专业设计团队，获取品牌设计、UI/UX设计、产品设计等服务。24小时内回复，提供一对一专业咨询服务。" />
+        <meta name="keywords" content="Than Studio,设计工作室,联系我们,品牌设计,UI设计,UX设计,产品设计,深圳设计" />
+        <meta property="og:title" content="联系我们 - Than Studio" />
+        <meta property="og:description" content="联系Than Studio专业设计团队，获取专业设计服务和咨询。" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="联系我们 - Than Studio" />
+        <meta name="twitter:description" content="联系Than Studio专业设计团队，获取专业设计服务和咨询。" />
+        <link rel="canonical" href="https://thanstudio.com/contact" />
+      </Head>
+      <div className="min-h-screen bg-white">
       {/* 英雄区域 */}
       <section className="relative pt-20 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
         {/* 背景装饰 */}
@@ -39,7 +53,7 @@ export default function Contact() {
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className={`text-center transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className={`text-center transform transition-all duration-800 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-light mb-8">
               <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 联系我们
@@ -52,7 +66,7 @@ export default function Contact() {
           </div>
           
           {/* 联系方式卡片 */}
-          <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 transform transition-all duration-800 delay-200 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,7 +108,7 @@ export default function Contact() {
       <section className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+            <div className={`text-center mb-16 transform transition-all duration-800 delay-300 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
               <h2 className="text-4xl sm:text-5xl font-light mb-6">
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   发送消息
@@ -108,7 +122,7 @@ export default function Contact() {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               {/* 表单 */}
-              <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
+              <div className={`transform transition-all duration-800 delay-400 ease-out ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
                 <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
                   <div className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -192,7 +206,7 @@ export default function Contact() {
               </div>
               
               {/* 右侧信息 */}
-              <div className={`transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}>
+              <div className={`transform transition-all duration-800 delay-500 ease-out ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}>
                 <div className="space-y-8">
                   <div>
                     <h3 className="text-2xl font-semibold mb-6 text-gray-800">为什么选择我们？</h3>
@@ -262,11 +276,29 @@ export default function Contact() {
       {/* 地图 */}
       <section className="py-10 sm:py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 md:mb-10">位置</h2>
-          <div className="w-full aspect-[4/3] sm:aspect-[16/9] bg-gray-200 rounded-lg overflow-hidden shadow-sm">
-            <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm md:text-base">
-              <span>地图将显示在这里</span>
-            </div>
+          <div className={`text-center mb-6 sm:mb-8 md:mb-10 transform transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                我们的位置
+              </span>
+            </h2>
+            <p className="text-gray-600">深圳市宝安区 - 欢迎预约参观我们的工作室</p>
+          </div>
+          <div className={`w-full aspect-[4/3] sm:aspect-[16/9] bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-800 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+            <img 
+              src={`${basePath}/images/contact-map.png`}
+              alt="Than Studio工作室位置地图 - 深圳市宝安区"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="256"
+            />
+          </div>
+          <div className={`text-center mt-6 transform transition-all duration-800 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+            <p className="text-gray-600 text-sm">
+              具体地址请通过邮件或电话联系我们获取，我们很乐意为您提供详细的导航信息。
+            </p>
           </div>
         </div>
       </section>
@@ -276,7 +308,7 @@ export default function Contact() {
         <div className="container mx-auto px-4">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 md:mb-10">常见问题</h2>
           <div className="max-w-3xl mx-auto grid gap-4 md:gap-6">
-            <div className="bg-white p-5 rounded-lg shadow-sm">
+            <div className="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
               <h3 className="text-lg font-medium mb-2">如何预约咨询？</h3>
               <p className="text-gray-600 text-sm">您可以通过电子邮件、电话或填写网站上的联系表单来预约咨询。我们的团队会在24小时内回复您，安排合适的咨询时间。</p>
             </div>
@@ -303,6 +335,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

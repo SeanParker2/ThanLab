@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Layout from '../components/Layout'
+import PerformanceOptimizer from '../components/PerformanceOptimizer'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -12,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // 页面加载动画逻辑
     const handleStart = () => setPageLoading(true);
     const handleComplete = () => {
-      setTimeout(() => setPageLoading(false), 3500);
+      setTimeout(() => setPageLoading(false), 2000);
     };
 
     router.events.on('routeChangeStart', handleStart);
@@ -27,9 +28,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router]);
 
   return (
-    <Layout pageLoading={pageLoading}>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <PerformanceOptimizer />
+      <Layout pageLoading={pageLoading}>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   )
 }
 

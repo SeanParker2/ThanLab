@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface PageLoaderProps {
   pageLoading: boolean;
@@ -18,23 +18,23 @@ const PageLoader: React.FC<PageLoaderProps> = ({ pageLoading }) => {
       setAnimationStage(0);
       setAnimationComplete(false);
       
-      // 启动动画阶段序列 - 优化时间线使动画更加丝滑
+      // 启动动画阶段序列 - 优化时间线在2秒内完成
       const stageTimers = [
-        setTimeout(() => setAnimationStage(1), 900),  // 第一阶段：Logo描边 - 延长时间使过渡更平滑
-        setTimeout(() => setAnimationStage(2), 2000), // 第二阶段：设计元素出现 - 增加间隔使动画更连贯
-        setTimeout(() => setAnimationStage(3), 2800), // 第三阶段：文字淡入 - 延长过渡时间
-        setTimeout(() => setAnimationComplete(true), 3500) // 完成状态 - 给予更多时间完成所有动画
+        setTimeout(() => setAnimationStage(1), 100),  // 第一阶段：Logo描边
+        setTimeout(() => setAnimationStage(2), 200),  // 第二阶段：设计元素出现
+        setTimeout(() => setAnimationStage(3), 300), // 第三阶段：文字淡入
+        setTimeout(() => setAnimationComplete(true), 450) // 完成状态
       ];
       return () => stageTimers.forEach(timer => clearTimeout(timer));
     } else {
       // 当页面加载完成时，添加退出动画类
       setAnimationClass('animate-out');
       
-      // 动画完成后清除类名 - 延长时间使退出动画更流畅
+      // 动画完成后清除类名 - 快速退出动画
       const timer = setTimeout(() => {
         setAnimationClass('');
         setAnimationStage(0);
-      }, 1000);
+      }, 600);
       
       return () => clearTimeout(timer);
     }
@@ -44,12 +44,12 @@ const PageLoader: React.FC<PageLoaderProps> = ({ pageLoading }) => {
   if (!pageLoading && !animationClass) return null;
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-white transition-all duration-800 ${animationClass === 'animate-out' ? 'opacity-0' : 'opacity-100'}`} style={{perspective: '1000px'}}>
+    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-white transition-all duration-500 ${animationClass === 'animate-out' ? 'opacity-0' : 'opacity-100'}`} style={{perspective: '1000px'}}>
       <div 
         className="creative-loader relative w-80 h-80 flex flex-col items-center justify-center"
         style={{
           transform: `translateZ(${animationStage * 8}px) rotateX(${animationStage * 0.5}deg)`,
-          transition: 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
           willChange: 'transform',
           backfaceVisibility: 'hidden'
         }}
@@ -62,7 +62,7 @@ const PageLoader: React.FC<PageLoaderProps> = ({ pageLoading }) => {
           xmlns="http://www.w3.org/2000/svg"
           style={{
             transform: `translateZ(${animationStage * 3}px) scale(${1 + animationStage * 0.02}) rotateY(${animationStage * 0.8}deg)`,
-            transition: 'transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            transition: 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
             willChange: 'transform',
             backfaceVisibility: 'hidden'
           }}

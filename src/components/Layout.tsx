@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageLoading = false }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <PageLoader pageLoading={pageLoading} />
-      <header className="fixed top-0 left-0 w-full h-20 bg-white bg-opacity-80 backdrop-blur-sm z-[9999] shadow-sm">
+      <header className="fixed top-0 left-0 w-full h-20 bg-white bg-opacity-90 backdrop-blur-md z-[9999] shadow-sm transition-all duration-300">
         <div className="container mx-auto px-4 h-full flex items-center justify-between">
           <div className="text-xl font-bold">
             <Link href="/">Than Studio</Link>
@@ -33,59 +33,64 @@ const Layout: React.FC<LayoutProps> = ({ children, pageLoading = false }) => {
           
           {/* 移动端汉堡菜单按钮 */}
           <button 
-            className="md:hidden flex flex-col space-y-1.5 p-2"
+            className="md:hidden flex flex-col space-y-1.5 p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 touch-manipulation"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="菜单"
+            aria-label={mobileMenuOpen ? '关闭菜单' : '打开菜单'}
+            aria-expanded={mobileMenuOpen}
           >
-            <span className={`block w-6 h-0.5 bg-black transition-transform duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-            <span className={`block w-6 h-0.5 bg-black transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-6 h-0.5 bg-black transition-transform duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
           </button>
           
           {/* 桌面端导航 */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <div className={`transition-colors font-medium ${currentPath.startsWith('/work') ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`}>
-              <Link href="/work">Work</Link>
-            </div>
-            <div className={`transition-colors font-medium ${currentPath.startsWith('/story') ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`}>
-              <Link href="/story">Story</Link>
-            </div>
-            <div className={`transition-colors font-medium ${currentPath.startsWith('/contact') ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`}>
-              <Link href="/contact">Contact</Link>
-            </div>
-            <div className={`transition-colors font-medium ${currentPath.startsWith('/store') ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`}>
-              <Link href="/store">Store</Link>
-            </div>
+          <nav className="hidden md:flex items-center space-x-8" role="navigation">
+            <Link href="/work" className={`transition-all duration-200 font-medium px-3 py-2 rounded-lg ${currentPath.startsWith('/work') ? 'text-black bg-gray-100' : 'text-gray-600 hover:text-black hover:bg-gray-50'}`}>
+              Work
+            </Link>
+            <Link href="/story" className={`transition-all duration-200 font-medium px-3 py-2 rounded-lg ${currentPath.startsWith('/story') ? 'text-black bg-gray-100' : 'text-gray-600 hover:text-black hover:bg-gray-50'}`}>
+              Story
+            </Link>
+            <Link href="/contact" className={`transition-all duration-200 font-medium px-3 py-2 rounded-lg ${currentPath.startsWith('/contact') ? 'text-black bg-gray-100' : 'text-gray-600 hover:text-black hover:bg-gray-50'}`}>
+              Contact
+            </Link>
+            <Link href="/store" className={`transition-all duration-200 font-medium px-3 py-2 rounded-lg ${currentPath.startsWith('/store') ? 'text-black bg-gray-100' : 'text-gray-600 hover:text-black hover:bg-gray-50'}`}>
+              Store
+            </Link>
           </nav>
         </div>
         
         {/* 移动端导航菜单 */}
-        <div className={`md:hidden absolute w-full bg-white shadow-md transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-          <nav className="flex flex-col py-4 px-4 space-y-4">
-            <div 
-              className={`py-2 px-4 transition-colors ${currentPath.startsWith('/work') ? 'bg-gray-100 text-black font-medium' : 'text-gray-600 hover:bg-gray-50'}`}
+        <div className={`md:hidden absolute w-full bg-white shadow-lg border-t transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+          <nav className="flex flex-col py-4 px-4 space-y-2" role="navigation">
+            <Link 
+              href="/work"
+              className={`py-3 px-4 rounded-lg transition-all duration-200 touch-manipulation ${currentPath.startsWith('/work') ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-600 hover:bg-gray-50 active:bg-gray-100'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Link href="/work">Work</Link>
-            </div>
-            <div 
-              className={`py-2 px-4 transition-colors ${currentPath.startsWith('/story') ? 'bg-gray-100 text-black font-medium' : 'text-gray-600 hover:bg-gray-50'}`}
+              Work
+            </Link>
+            <Link 
+              href="/story"
+              className={`py-3 px-4 rounded-lg transition-all duration-200 touch-manipulation ${currentPath.startsWith('/story') ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-600 hover:bg-gray-50 active:bg-gray-100'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Link href="/story">Story</Link>
-            </div>
-            <div 
-              className={`py-2 px-4 transition-colors ${currentPath.startsWith('/contact') ? 'bg-gray-100 text-black font-medium' : 'text-gray-600 hover:bg-gray-50'}`}
+              Story
+            </Link>
+            <Link 
+              href="/contact"
+              className={`py-3 px-4 rounded-lg transition-all duration-200 touch-manipulation ${currentPath.startsWith('/contact') ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-600 hover:bg-gray-50 active:bg-gray-100'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Link href="/contact">Contact</Link>
-            </div>
-            <div 
-              className={`py-2 px-4 transition-colors ${currentPath.startsWith('/store') ? 'bg-gray-100 text-black font-medium' : 'text-gray-600 hover:bg-gray-50'}`}
+              Contact
+            </Link>
+            <Link 
+              href="/store"
+              className={`py-3 px-4 rounded-lg transition-all duration-200 touch-manipulation ${currentPath.startsWith('/store') ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-600 hover:bg-gray-50 active:bg-gray-100'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Link href="/store">Store</Link>
-            </div>
+              Store
+            </Link>
           </nav>
         </div>
       </header>
