@@ -13,7 +13,7 @@ Allow: /css/
 Allow: /js/
 
 # 网站地图位置
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://seanparker2.github.io/ThanLab/sitemap.xml
 
 # 爬取延迟（可选）
 Crawl-delay: 1

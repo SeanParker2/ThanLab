@@ -29,13 +29,13 @@ export default function Document() {
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         
         {/* Favicon 和图标 */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+        <link rel="icon" href={`${process.env.NODE_ENV === 'production' ? '/ThanLab' : ''}/favicon.ico`} sizes="any" />
+        <link rel="icon" href={`${process.env.NODE_ENV === 'production' ? '/ThanLab' : ''}/favicon.svg`} type="image/svg+xml" />
+        <link rel="apple-touch-icon" sizes="180x180" href={`${process.env.NODE_ENV === 'production' ? '/ThanLab' : ''}/apple-touch-icon.png`} />
+        <link rel="icon" type="image/png" sizes="32x32" href={`${process.env.NODE_ENV === 'production' ? '/ThanLab' : ''}/favicon-32x32.png`} />
+        <link rel="icon" type="image/png" sizes="16x16" href={`${process.env.NODE_ENV === 'production' ? '/ThanLab' : ''}/favicon-16x16.png`} />
+        <link rel="manifest" href={`${process.env.NODE_ENV === 'production' ? '/ThanLab' : ''}/site.webmanifest`} />
+        <link rel="mask-icon" href={`${process.env.NODE_ENV === 'production' ? '/ThanLab' : ''}/safari-pinned-tab.svg`} color="#000000" />
         
         {/* 结构化数据 */}
         <script
